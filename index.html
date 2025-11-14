@@ -1,11 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<template>
+  <div class="login-container">
+    <h1>เข้าสู่ระบบ</h1>
+
+    <form @submit.prevent="login">
+      <div>
+        <label>ชื่อผู้ใช้ / อีเมล</label>
+        <input type="text" v-model="form.username" />
+      </div>
+
+      <div>
+        <label>รหัสผ่าน</label>
+        <input :type="showPassword ? 'text' : 'password'" v-model="form.password" />
+        <button type="button" @click="showPassword = !showPassword">
+          {{ showPassword ? 'ซ่อน' : 'แสดง' }}
+        </button>
+      </div>
+
+      <button type="submit" :disabled="loading">
+        {{ loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ" }}
+      </button>
+
+      <p v-if="errorMessage" style="color:red">{{ errorMessage }}</p>
+    </form>
+  </div>
+</template>
+
+<script setup>
+import { reactive, ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const form = reactive({
+  username: "",
+  password: "",
+});
+
+const showPassword = ref(false);
+const loading = ref(false);
+const errorMessage = ref("");
+
+async function login() {
+  loading.value = true;
+  errorMessage.value = "";
+
+  try {
+    const res = await axios.post("http://localhost:7000/api/auth/login", {
+      username: form.username,
+      password: form.password,
+    });
+
+    const data = res.data;
+    console.log("Login result:", data);
+
+    // 👉 เก็บ token
+    localStorage.setItem("token", data.accessToken);
+
+    if (data.user) {
+      localStorage.setItem("user", JSON.stringify(data.user));
+    }
+
+    // 👉 ตรวจสอบ role แล้วส่งหน้าไป
+    if (data.role === "admin") {
+      router.push({ name: "indexadmin" });
+    } else if (data.role === "Evaluator") {
+      router.push({ name: "indexEmtor" });
+    } else if (data.role === "Employee") {
+      router.push({ name: "indexEmyee" });
+    } else {
+      router.push("/");
+    }
+  } catch (err) {
+    // ถ้า API error
+    if (err.response?.data?.message) {
+      errorMessage.value = err.response.data.message;
+    } else {
+      errorMessage.value = "ไม่สามารถเข้าสู่ระบบได้";
+    }
+  } finally {
+    loading.value = false;
+  }
+}
+</script>
+
+<style>
+.login-container {
+  width: 350px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+</style>
+
