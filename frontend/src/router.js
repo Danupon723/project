@@ -3,6 +3,7 @@ import login from './view/login.vue'
 import adminIndex from './view/admin/index.vue'
 import admindashbord from './view/admin/dashbord.vue'
 import adminuser from './view/admin/users.vue'
+import register from './view/evaluation.vue'
 const routes = [
     {
         path: '/',
@@ -23,7 +24,12 @@ const routes = [
                 path: 'users',
                 name: 'user',
                 component: adminuser
-            }
+            },
+            {
+                path: 'register',
+                name: 'register',
+                component: register
+            },
         ]
     }
 ]

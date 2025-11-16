@@ -5,11 +5,11 @@
 
       <form @submit.prevent="login">
         <div class="form-group">
-          <label>ชื่อผู้ใช้ / อีเมล</label>
-          <input type="text" v-model="form.username" placeholder="กรอกชื่อผู้ใช้หรืออีเมล" />
+          <label>อีเมล</label>
+          <input type="text" v-model="form.email" placeholder="กรอกอีเมล" />
         </div>
 
-        <div class="form-group">
+ <div class="form-group">
           <label>รหัสผ่าน</label>
 
           <div class="password-box ">
@@ -23,6 +23,24 @@
             </button>
           </div>
         </div>
+
+        <div class="form-group">
+          <label>ชื่อผู้ใช้</label>
+          <input type="text" v-model="form.username" placeholder="กรอกชื่อผู้ใช้" />
+        </div>
+        
+      <div class="form-group">
+    <label>เลือกตำแหน่งงาน</label>
+    <select v-model="selectedRole">
+      <option disabled value="">-- กรุณาเลือกตำแหน่ง --</option>
+      <option v-for="role in roles" :key="role.id" :value="role.name">
+        {{ role.name }}
+      </option>
+    </select>
+
+    <p>คุณเลือก: {{ selectedRole }}</p>
+  </div>
+
 
         <button class="login-btn" type="submit" :disabled="loading">
           {{ loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ" }}
