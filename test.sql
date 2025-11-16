@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2025 at 05:08 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Nov 16, 2025 at 06:02 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,9 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `role` enum('Admin','Employee','Evaluator') NOT NULL,
+  `department_id` varchar(50) NOT NULL,
+  `org_groups_id` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -39,8 +42,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `name`, `created_at`) VALUES
-(1, 'email@gmail.com', '123456', 'phukao', '2025-11-07 03:03:28');
+INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `department_id`, `org_groups_id`, `created_at`) VALUES
+(1, 'email@gmail.com', '123456', 'phukao', 'Admin', '', '', '2025-11-16 04:58:58');
 
 --
 -- Indexes for dumped tables
