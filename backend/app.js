@@ -5,6 +5,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 
 const auth = require('./router/authrouter');
+const adminrouter = require('./router/admin.router');
 const app = express(); 
 app.use(cors({origin:process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*'}))
     
@@ -22,5 +23,6 @@ app.get('/oak' , (req,res)=>{
 })
 
 app.use('/api/auth' , auth )
+app.use('/api/admin' , adminrouter)
 
 module.exports = app
