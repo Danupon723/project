@@ -16,3 +16,18 @@ exports.login = async (req,res,next)=>{
         next(e)
     }
 }
+
+exports.register = async (req,res,next) =>{
+    try{
+        const {name,email,password} = req.body
+        const row = await conn('users').where({email}).first();
+        if(row){
+            return res.status(400).json({success:false,message:'มีผู้ใช้บัญขีนี้อยู่เเล้ว'})
+        }
+        const password_hash = await bcrypt
+        const user = await conn('users').insert({name,email,password})
+        res.json({success:true, message:'complata'})
+    }catch{
+        next(e)
+    }
+}
