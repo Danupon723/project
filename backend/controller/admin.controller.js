@@ -2,10 +2,12 @@ require('dotenv').config()
 const conn = require('../config/db')
 const bcrypt = require('bcrypt')
 
-exports.userlist = async(req,res,next)=>{
+exports.list = async(req,res,next)=>{
     try{
-        const items = await conn('users').select("*").orderBy("id" , "desc")
-        res.json({success:true, items , total : items.length})
+        const useritems = await conn('users').select("*").orderBy("id" , "desc")
+        const periditems = await conn('evaluation_periods').select("*")
+        const topicsitems = await conn('evaluation_topics').select("*")
+        res.json({success:true, useritems , periditems , topicsitems ,total : [useritems.length , periditems.length , topics.length]  })
     }catch(e){
         next(e)
     }
