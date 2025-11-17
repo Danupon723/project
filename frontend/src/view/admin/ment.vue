@@ -54,13 +54,8 @@
             variant="outlined"
           />
         </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field
-            type=""
-            label="เพิ่มไฟล์เเนบ(%)"
-            v-model="form.url"
-            variant="outlined"
-          />
+        <v-col cols="12" md="6 ">
+        <v-file-input label="File input" variant="outlined"></v-file-input>
         </v-col>
       </v-row>
 
@@ -121,13 +116,13 @@ let nextId = 1;
 
 // คอลัมน์ของตาราง Vuetify 3
 const headers = [
-  { text: "หัวข้อประเมิน", value: "topic" },
-  { text: "คำอธิบาย", value: "description" },
-  { text: "หัวข้อย่อย", value: "subtopic" },
-  { text: "คำอธิบายย่อย", value: "subdescription" },
-  { text: "รูปแบบ", value: "format" },
-  { text: "น้ำหนัก(%)", value: "weight" },
-  { text: "จัดการ", value: "actions", align: "center" },
+  { title: "หัวข้อประเมิน", value: "topic" },
+  { title: "คำอธิบาย", value: "description" },
+  { title: "หัวข้อย่อย", value: "subtopic" },
+  { title: "คำอธิบายย่อย", value: "subdescription" },
+  { title: "รูปแบบ", value: "format" },
+  { title: "น้ำหนัก(%)", value: "weight" },
+  { title: "จัดการ", value: "actions", align: "center" },
 ];
 
 // ➕ เพิ่มข้อมูลลงตาราง
@@ -164,10 +159,11 @@ function removeRow(id) {
 // 🟢 ส่งข้อมูลทั้งหมดไป backend
 async function sendToBackend() {
   try {
-    const response = await axios.post(
-      "http://localhost:7000/api/assessment/part5",
-      savedData.value
-    );
+    console.log(savedData.value)
+    // const response = await axios.post(
+    //   "http://localhost:7000/api/assessment/part5",
+    //   savedData.value
+    // );
 
     console.log("บันทึกสำเร็จ:", response.data);
     alert("ส่งข้อมูลไปฐานข้อมูลสำเร็จ!");
@@ -176,8 +172,8 @@ async function sendToBackend() {
     savedData.value = [];
     nextId = 1;
   } catch (error) {
-    console.error(error);
-    alert("เกิดข้อผิดพลาดในการส่งข้อมูล");
+    // console.error(error);
+    // alert("เกิดข้อผิดพลาดในการส่งข้อมูล");
   }
 }
 </script>

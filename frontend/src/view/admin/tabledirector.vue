@@ -6,19 +6,11 @@
 
       <!-- ✅ ปุ่มเพิ่มข้อมูล + เมนู -->
       <v-menu>
-
-        <!-- ✅ รายการเมนู -->
-        <v-list>
-              <v-list-item @click="เลือก('เพิ่มครู')">
-            <router-link to="/"><v-list-item-title>เพิ่มรายชื่อกรรมการผู้ประเมิน</v-list-item-title></router-link>
-          </v-list-item>
-          <v-list-item @click="เลือก('เพิ่มนักเรียน')">
-            <router-link to="/login"><v-list-item-title>เพิ่มรายชื่อผู้ถูกประเมิน</v-list-item-title></router-link>
-          </v-list-item>
-          <v-list-item @click="เลือก('เพิ่มรายวิชา')">
-          <router-link to="/login"><v-list-item-title>เพิ่ม</v-list-item-title></router-link>
-          </v-list-item>
-        </v-list>
+        <template #activator="{ props }">
+          <router-link to="/director"><v-btn color="primary" v-bind="props">
+            เพิ่มรายชื่อ
+          </v-btn></router-link>
+        </template>
       </v-menu>
     </v-toolbar>
 

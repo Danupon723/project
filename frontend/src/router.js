@@ -10,6 +10,8 @@ import admindashbord from './view/admin/dashbord.vue'
 import adminuser from './view/admin/users.vue'
 import evaluation from './view/admin/evaluation.vue'
 import mentadmin from './view/admin/ment.vue'
+import admindirector from './view/admin/director.vue'
+import table from './view/admin/tabledirector.vue'
 
 
 const routes = [
@@ -27,6 +29,16 @@ const routes = [
         path: '/ment',
         name: 'assessment',
         component: mentadmin
+    },
+    {
+        path: '/tabledirector',
+        name: 'tdirector',
+        component: table
+    },
+    {
+        path: '/director',
+        name: 'director',
+        component: admindirector
     },
 
     // Admin routes
