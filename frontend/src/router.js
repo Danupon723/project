@@ -1,15 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+// Auth
 import login from './view/login.vue'
+import register from './view/register.vue'
+
+// Admin
 import adminIndex from './view/admin/index.vue'
 import admindashbord from './view/admin/dashbord.vue'
 import adminuser from './view/admin/users.vue'
-import register from './view/evaluation.vue'
+import evaluation from './view/admin/evaluation.vue'
+
+
 const routes = [
     {
         path: '/',
         name: 'login',
         component: login
     },
+    {
+        path: '/register',
+        name: 'register',
+        component: register
+    },
+
+    // Admin routes
     {
         path: '/admin',
         component: adminIndex,
@@ -21,17 +35,19 @@ const routes = [
                 component: admindashbord
             },
             {
-                path: 'users',
-                name: 'user',
-                component: adminuser
+                path: 'evaluation',
+                name: 'evaluation',
+                component: evaluation
             },
             {
-                path: 'register',
-                name: 'register',
-                component: register
+                path: 'users',
+                name: 'adminuser',
+                component: adminuser
             },
         ]
-    }
+    },
+
+   
 ]
 
 const router = createRouter({
