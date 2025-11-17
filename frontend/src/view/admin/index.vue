@@ -20,14 +20,13 @@
     <!-- แถบด้านข้าง -->
     <v-navigation-drawer v-model="drawer" app color="grey-lighten-1">
       <v-list density="compact">
-        <v-toolbar-title> ระบบประเมินบุคคล</v-toolbar-title>
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
           :title="item.title"
           @click="selectMenu(item)"
         />
-      </v-list>
+      </v-list> 
     </v-navigation-drawer>
 
     <!-- เนื้อหาหลัก -->
@@ -50,12 +49,13 @@ import { ref } from 'vue'
 import admindashbord from './dashbord.vue'
 import adminevaluation from './evaluation.vue'
 import adminuser from './users.vue'
+import assessmentadmin from './assessment.vue'
 
 const drawer = ref(true)
 const items = [
   { title: 'แดชบอร์ด', icon: 'mdi-login', component: admindashbord },
   { title: 'การประเมิน', icon: 'mdi-login', component: adminevaluation },
-  { title: 'เเบบประเมิน', icon: 'mdi-login', component: Assessmentadmin },
+  { title: 'เเบบประเมิน', icon: 'mdi-login', component: assessmentadmin },
   { title: 'ผู้ใช้', icon: 'mdi-login', component: adminuser },
 ]
 const currentPage = ref(items[0])

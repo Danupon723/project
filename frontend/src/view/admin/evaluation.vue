@@ -79,14 +79,13 @@ const topics = ref([]);
 
 const headers = [
   { title: "หัวข้อการประเมิน", key: "name" },
-  { title: "น้ำหนักคะเเนน (%)", key: "weight" },
   { title: "ระยะเวลาการประเมิน", Skey: "date" },
   { title: "ทำงาน", key: "active" },
   { title: "จัดการ", key: "actions", align: "center" },
 ];
 
 const users = [
-  { name: 'การเรียนการสอน', weight:'10(%)', date:'11/09/2025 ',active:'กำลังทำงาน' , process:''},
+  { name: 'การเรียนการสอน', date:'11/09/2025 ', process:''},
 ]
 
 const addDialog = ref(false);

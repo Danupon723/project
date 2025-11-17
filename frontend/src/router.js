@@ -9,6 +9,7 @@ import adminIndex from './view/admin/index.vue'
 import admindashbord from './view/admin/dashbord.vue'
 import adminuser from './view/admin/users.vue'
 import evaluation from './view/admin/evaluation.vue'
+import assessmentadmin from './view/admin/assessment.vue'
 
 
 const routes = [
@@ -43,6 +44,11 @@ const routes = [
                 path: 'users',
                 name: 'adminuser',
                 component: adminuser
+            },
+            {
+                path: 'assessment',
+                name: 'assess',
+                component: assessmentadmin
             },
         ]
     },
