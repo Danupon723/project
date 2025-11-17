@@ -16,6 +16,19 @@
         </button>
       </div>
 
+  <div class="form-group">
+    <label>เลือกตำแหน่งงาน</label>
+    <select v-model="selectedRole">
+      <option disabled value="">-- กรุณาเลือกตำแหน่ง --</option>
+      <option v-for="role in roles" :key="role.id" :value="role.name">
+        {{ role.name }}
+      </option>
+    </select>
+
+    <p>คุณเลือก: {{ selectedRole }}</p>
+  </div>
+
+
       <button type="submit" :disabled="loading">
         {{ loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ" }}
       </button>
@@ -30,6 +43,12 @@ import { reactive, ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
+const roles = [
+  { id: 1, name: 'Admin' },
+  { id: 2, name: 'Evaluator' },
+  { id: 3, name: 'Employee' },
+];
+const selectedRole = ref(''); 
 const router = useRouter();
 
 const form = reactive({
@@ -92,5 +111,17 @@ async function login() {
   border: 1px solid #ddd;
   border-radius: 6px;
 }
+
+.form-group {
+  margin-bottom: 16px;
+}
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
 </style>
 
