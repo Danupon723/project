@@ -7,7 +7,7 @@ const conn = kenx({
         host: process.env.HOST || '127.0.0.1' ,
         user: process.env.USER || 'root' ,
         password: process.env.PASSWORD || '' , 
-        database: process.env.NAME || 'test' , 
+        database: process.env.NAME || 'skills_db' , 
         port: process.env.DB_PORT || 3306 , 
         connectTimeout: 1500
     } , 
