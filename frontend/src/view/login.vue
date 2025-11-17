@@ -21,10 +21,7 @@
         @click:append-inner="showPassword = !showPassword"
       />
 
-      <v-checkbox
-        v-model="remember"
-        label="จำฉันไว้ในระบบ"
-      />
+     
 
       <v-btn
         color="primary"
@@ -33,7 +30,8 @@
         @click="signIn"
       >
         เข้าสู่ระบบ
-      </v-btn>
+      </v-btn><br>
+      <center>ไม่มีบัญชีผู้ใช้ <router-link to="/register"> สมัคร</router-link></center>
 
     </v-card>
   </v-container>
