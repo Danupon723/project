@@ -4,17 +4,18 @@
     <v-app-bar color="grey-darken-1" dark>
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>ระบบประเมินนบุคคล</v-toolbar-title>
-<router-link to="/">      
-        <v-btn
-          type="submit"
-          block
-          color="#B71C1C"
-          size="large"
-          class="text-white"
-        >
-          Logout
-        </v-btn>
-</router-link>  
+
+
+<v-btn
+  type="button"
+  color="#A60505"
+  size="large"
+  class="text-white"
+  @click="logout"
+>
+  Logout
+</v-btn>
+ 
     </v-app-bar>
 
     <!-- แถบด้านข้าง -->
@@ -32,7 +33,7 @@
     <!-- เนื้อหาหลัก -->
     <v-main>
       <v-container>
-        <v-card class="pa-5" max-width="1100">
+        <v-card class="pa-5" max-width="1300">
           <v-card-text>
             <!-- ✅ แสดง component ตามเมนู -->
             <component :is="currentPage.component" />
@@ -45,24 +46,30 @@
 
 <script setup>
 
-import { ref } from 'vue'
+import {  ref, markRaw  , shallowRef } from 'vue'
+import { useRouter } from 'vue-router'
 import admindashbord from './dashbord.vue'
 import adminevaluation from './evaluation.vue'
 import adminuser from './users.vue'
 import assessmentadmin from './ment.vue'
 import tabledirector from './tabledirector.vue'
 
+const router = useRouter()
+
 const drawer = ref(true)
 const items = [
   { title: 'แดชบอร์ด', icon: 'mdi-login', component: admindashbord },
-  { title: 'การประเมิน', icon: 'mdi-login', component: adminevaluation },
   { title: 'ผู้ใช้', icon: 'mdi-login', component: adminuser },
+  { title: 'การประเมิน', icon: 'mdi-login', component: adminevaluation },
   { title: 'กรรมการผู้ประเมิน', icon: 'mdi-login', component: tabledirector },
 ]
-const currentPage = ref(items[0])
+const currentPage = shallowRef(items[0])
 
 function selectMenu(item) {
   currentPage.value = item
 }
-
+function logout(){
+  localStorage.removeItem('token');
+   router.push('/') 
+}
 </script>

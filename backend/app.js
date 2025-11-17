@@ -7,7 +7,8 @@ const morgan = require('morgan')
 const auth = require('./router/authrouter');
 const adminrouter = require('./router/admin.router');
 const app = express(); 
-app.use(cors({origin:process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*'}))
+app.use(cors())
+// app.use(cors({origin:process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*'}))
     
 
 app.use(express.urlencoded({ extended: true}))

@@ -36,3 +36,21 @@ exports.register = async (req,res,next)=>{
         next(e)
     }
 }
+
+exports.department = async (req,res,next) =>{
+    try{
+        const dpmtitem = await conn('departments').select('*')
+        res.json({dpmtitem})
+    }catch(e){
+        next(e)
+    }
+}
+
+exports.groups = async (req,res,next) =>{
+    try{
+        const groups = await conn('org_groups').select('*')
+        res.json({groups})
+    }catch(e){
+        next(e)
+    }
+}

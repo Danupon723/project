@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-console.log("Dashboard loaded")
+
 </script>
 
 <style scoped>

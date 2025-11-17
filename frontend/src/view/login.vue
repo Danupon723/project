@@ -31,7 +31,10 @@
       >
         เข้าสู่ระบบ
       </v-btn><br>
-      <center>ไม่มีบัญชีผู้ใช้ <router-link to="/register"> สมัคร</router-link></center>
+      <div style="text-align:center">
+  ไม่มีบัญชีผู้ใช้ <router-link to="/register">สมัคร</router-link>
+</div>
+    
 
     </v-card>
   </v-container>

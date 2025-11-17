@@ -2,67 +2,76 @@
   <v-container>
     <h2 class="text-h5 mb-4">แบบฟอร์มประเมิน</h2>
 
-    <!-- ฟอร์มกรอกข้อมูล -->
+    <!-- กล่องฟอร์มหัวข้อหลัก -->
     <v-card class="pa-4 mb-4">
-      <v-row>
-        <v-col cols="12" md="6">
-          <v-text-field
-            label="เพิ่มหัวข้อประเมิน"
-            v-model="form.topic"
-            variant="outlined"
-          />
-        </v-col>
+      <v-card-title>หัวข้อประเมินหลัก</v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="เพิ่มหัวข้อประเมิน"
+              v-model="form.topic"
+              variant="outlined"
+            />
+          </v-col>
 
-        <v-col cols="12" md="6">
-          <v-text-field
-            label="เพิ่มหัวข้อย่อย"
-            v-model="form.subtopic"
-            variant="outlined"
-          />
-        </v-col>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="คำอธิบายหัวข้อการประเมิน"
+              v-model="form.description"
+              variant="outlined"
+            />
+          </v-col>
 
-        <v-col cols="12" md="6">
-          <v-text-field
-            label="คำอธิบายหัวข้อการประเมิน"
-            v-model="form.description"
-            variant="outlined"
-          />
-        </v-col>
-
-        <v-col cols="12" md="6">
-          <v-text-field
-            label="คำอธิบายหัวข้อย่อย"
-            v-model="form.subdescription"
-            variant="outlined"
-          />
-        </v-col>
-
-        <v-col cols="12" md="6">
-          <v-select
-            label="รูปแบบการประเมิน"
-            v-model="form.format"
-            :items="items"
-            variant="outlined"
-          />
-        </v-col>
-
-        <v-col cols="12" md="6">
-          <v-text-field
-            type="number"
-            label="น้ำหนักคะแนน(%)"
-            v-model="form.weight"
-            variant="outlined"
-          />
-        </v-col>
-        <v-col cols="12" md="6 ">
-        <v-file-input label="File input" variant="outlined"></v-file-input>
-        </v-col>
-      </v-row>
-
-      <v-btn color="primary" class="mt-4" @click="addToTable">
-        บันทึกข้อมูล
-      </v-btn>
+        </v-row>
+      </v-card-text>
     </v-card>
+
+    <!-- กล่องฟอร์มหัวข้อย่อย -->
+    <v-card class="pa-4 mb-4">
+      <v-card-title>หัวข้อย่อย</v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="เพิ่มหัวข้อย่อย"
+              v-model="form.subtopic"
+              variant="outlined"
+            />
+          </v-col>
+
+          <v-col cols="12" md="6">
+            <v-text-field
+              label="คำอธิบายหัวข้อย่อย"
+              v-model="form.subdescription"
+              variant="outlined"
+            />
+          </v-col>
+                    <v-col cols="12" md="6">
+            <v-select
+              label="รูปแบบการประเมิน"
+              v-model="form.format"
+              :items="items"
+              variant="outlined"
+            />
+          </v-col>
+
+          <v-col cols="12" md="6">
+            <v-text-field
+              type="number"
+              label="น้ำหนักคะแนน(%)"
+              v-model="form.weight"
+              variant="outlined"
+            />
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+
+    <!-- ปุ่มบันทึกข้อมูล -->
+    <v-btn color="primary" class="mb-4" @click="addToTable">
+      บันทึกข้อมูล
+    </v-btn>
 
     <!-- ตารางแสดงข้อมูล -->
     <v-card class="pa-4">
@@ -91,6 +100,7 @@
   </v-container>
 </template>
 
+
 <script setup>
 import { reactive, ref } from "vue";
 import axios from "axios";
@@ -116,8 +126,8 @@ let nextId = 1;
 
 // คอลัมน์ของตาราง Vuetify 3
 const headers = [
-  { title: "หัวข้อประเมิน", value: "topic" },
-  { title: "คำอธิบาย", value: "description" },
+  // { title: "หัวข้อประเมิน", value: "topic" },
+  // { title: "คำอธิบาย", value: "description" },
   { title: "หัวข้อย่อย", value: "subtopic" },
   { title: "คำอธิบายย่อย", value: "subdescription" },
   { title: "รูปแบบ", value: "format" },
@@ -134,8 +144,8 @@ function addToTable() {
 
   savedData.value.push({
     id: nextId++,
-    topic: form.topic,
-    description: form.description,
+    // topic: form.topic,
+    // description: form.description,
     subtopic: form.subtopic,
     subdescription: form.subdescription,
     format: form.format,
@@ -143,8 +153,8 @@ function addToTable() {
   });
 
   // reset form
-  form.topic = "";
-  form.description = "";
+  // form.topic = "";
+  // form.description = "";
   form.subtopic = "";
   form.subdescription = "";
   form.format = items[0];
