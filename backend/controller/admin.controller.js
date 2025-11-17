@@ -21,7 +21,7 @@ exports.createuser = async (req,res,next) =>{
 
         const password_hash = await bcrypt.hash(password , 10)
 
-        const create = await conn('users').insert({name,email,password:password_hash,department_id: department ,org_groups_id: group_id,role})
+        const create = await conn('users').insert({name,email,password_hash,department_id: department ,org_groups_id: group_id,role})
             res.json({success:true , message: 'create user complata'})
         
 
@@ -29,4 +29,16 @@ exports.createuser = async (req,res,next) =>{
         next(e)
     }
 }
+exports.createperiods = async (req,res,next)=>{
+    try{
+        const {name , year ,datestart  , dateend } = req.body
+        const code = "Y"+year
+        const exit = await conn('evaluation_periods').where({buddhist_year:year}).first();
+        if(exit){return res.status(400).json({success:true,message:'มีหัวข้อนี้อยู่เเล้ว'})}
 
+        const add = await conn('evaluation_periods').insert({code,name_th:name ,buddhist_year :year ,start_date :datestart , end_date:dateend })
+        res.json({success:true, message:"create succesfully"})
+    }catch(e){
+        next(e)
+    }
+}
