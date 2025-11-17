@@ -42,3 +42,15 @@ exports.createperiods = async (req,res,next)=>{
         next(e)
     }
 }
+
+exports.assignments =  async (req,res,next)=>{
+    try{
+        const period = await conn('evaluation_periods').select("*") 
+        const evaluator = await conn('users').where({role:'evaluator'})
+        const evaluatee = await conn('users').where({role:'evaluatee'})
+        const departments = await conn('departments').select("*")
+        res.json({period ,evaluatee , evaluator , departments })
+    }catch(e){
+        next(e)
+    }
+}
