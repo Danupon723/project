@@ -2,59 +2,63 @@
   <v-container>
     <h2 class="text-h5 mb-4">แบบฟอร์มประเมิน</h2>
 
-    <!-- 🔵 ฟอร์มกรอกข้อมูล -->
+    <!-- ฟอร์มกรอกข้อมูล -->
     <v-card class="pa-4 mb-4">
-      <v-row >
+      <v-row>
         <v-col cols="12" md="6">
-             <h6 class="text-h6">เพิ่มหัวข้อการประเมิน</h6>
           <v-text-field
-           label="เพิ่มหัวข้อประเมิน"
+            label="เพิ่มหัวข้อประเมิน"
             v-model="form.topic"
             variant="outlined"
           />
         </v-col>
 
         <v-col cols="12" md="6">
-            <h6 class="text-h6">เพิ่มหัวข้อย่อย</h6>
           <v-text-field
-            v-model="form.subtopic"
             label="เพิ่มหัวข้อย่อย"
+            v-model="form.subtopic"
             variant="outlined"
           />
         </v-col>
 
         <v-col cols="12" md="6">
-            <h6 class="text-h6">คำอธิบายหัวข้อการประเมิน</h6>
           <v-text-field
-            v-model="form.description"
             label="คำอธิบายหัวข้อการประเมิน"
+            v-model="form.description"
             variant="outlined"
           />
         </v-col>
 
         <v-col cols="12" md="6">
-            <h6 class="text-h6">คำอธิบายหัวข้อย่อย</h6>
           <v-text-field
-            v-model="form.subdescription"
             label="คำอธิบายหัวข้อย่อย"
+            v-model="form.subdescription"
+            variant="outlined"
+          />
+        </v-col>
+
+        <v-col cols="12" md="6">
+          <v-select
+            label="รูปแบบการประเมิน"
+            v-model="form.format"
+            :items="items"
+            variant="outlined"
+          />
+        </v-col>
+
+        <v-col cols="12" md="6">
+          <v-text-field
+            type="number"
+            label="น้ำหนักคะแนน(%)"
+            v-model="form.weight"
             variant="outlined"
           />
         </v-col>
         <v-col cols="12" md="6">
-            <h6 class="text-h6">รูปเเบบการประเมิน</h6>
-        <v-select v-model="formselect" :items="items"  variant="outlined">
-          <template v-slot:item="{ props, item }">
-            <v-list-item v-bind="props" :title="null">
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </template>
-        </v-select>
-             </v-col>
-        <v-col cols="12" md="6">
-            <h6 class="text-h6">น้ำหนักคะเเนน(%)</h6>
           <v-text-field
-            v-model="form.subdescription"
-            label="น้ำหนักคะเเนน(%)"
+            type=""
+            label="เพิ่มไฟล์เเนบ(%)"
+            v-model="form.url"
             variant="outlined"
           />
         </v-col>
@@ -65,27 +69,28 @@
       </v-btn>
     </v-card>
 
-    <!-- 🟢 ตารางแสดงข้อมูลที่บันทึก -->
+    <!-- ตารางแสดงข้อมูล -->
     <v-card class="pa-4">
       <v-data-table
         :headers="headers"
         :items="savedData"
         class="elevation-1"
+        item-key="id"
       >
-        <template #item.actions="{ index }">
-          <v-btn color="red" variant="text" @click="removeRow(index)">
+        <template #item.actions="{ item }">
+          <v-btn color="red" variant="text" @click="removeRow(item.id)">
             ลบ
           </v-btn>
         </template>
       </v-data-table>
 
       <v-btn
-        color="primary"
+        color="green"
         class="mt-4"
         :disabled="savedData.length === 0"
         @click="sendToBackend"
       >
-        บันทึกข้อมูล
+        ส่งข้อมูลทั้งหมดไปฐานข้อมูล
       </v-btn>
     </v-card>
   </v-container>
@@ -95,24 +100,34 @@
 import { reactive, ref } from "vue";
 import axios from "axios";
 
+// รูปแบบการประเมิน
+const items = ['มี/ไม่มี', '1-4', 'URL'];
+
 // ฟอร์มกรอกข้อมูล
 const form = reactive({
   topic: "",
   description: "",
   subtopic: "",
   subdescription: "",
+  format: items[0],
+  weight: 0,
 });
 
 // ตารางเก็บข้อมูลชั่วคราว
 const savedData = ref([]);
 
-// คอลัมน์ของตาราง
+// ตัวนับ id สำหรับแต่ละ row
+let nextId = 1;
+
+// คอลัมน์ของตาราง Vuetify 3
 const headers = [
-  { title: "หัวข้อประเมิน", key: "topic" },
-  { title: "คำอธิบาย", key: "description" },
-  { title: "หัวข้อย่อย", key: "subtopic" },
-  { title: "คำอธิบายย่อย", key: "subdescription" },
-  { title: "จัดการ", key: "actions", align: "center" },
+  { text: "หัวข้อประเมิน", value: "topic" },
+  { text: "คำอธิบาย", value: "description" },
+  { text: "หัวข้อย่อย", value: "subtopic" },
+  { text: "คำอธิบายย่อย", value: "subdescription" },
+  { text: "รูปแบบ", value: "format" },
+  { text: "น้ำหนัก(%)", value: "weight" },
+  { text: "จัดการ", value: "actions", align: "center" },
 ];
 
 // ➕ เพิ่มข้อมูลลงตาราง
@@ -123,22 +138,27 @@ function addToTable() {
   }
 
   savedData.value.push({
+    id: nextId++,
     topic: form.topic,
     description: form.description,
     subtopic: form.subtopic,
     subdescription: form.subdescription,
+    format: form.format,
+    weight: form.weight,
   });
 
-  // reset ฟอร์ม
+  // reset form
   form.topic = "";
   form.description = "";
   form.subtopic = "";
   form.subdescription = "";
+  form.format = items[0];
+  form.weight = 0;
 }
 
-// ❌ ลบแถว
-function removeRow(index) {
-  savedData.value.splice(index, 1);
+// ❌ ลบแถวโดย id
+function removeRow(id) {
+  savedData.value = savedData.value.filter(item => item.id !== id);
 }
 
 // 🟢 ส่งข้อมูลทั้งหมดไป backend
@@ -154,7 +174,7 @@ async function sendToBackend() {
 
     // หลังส่ง ล้างตาราง
     savedData.value = [];
-
+    nextId = 1;
   } catch (error) {
     console.error(error);
     alert("เกิดข้อผิดพลาดในการส่งข้อมูล");

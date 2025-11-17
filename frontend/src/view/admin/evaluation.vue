@@ -10,9 +10,8 @@
         <v-toolbar flat>
           <v-toolbar-title>หัวข้อการประเมินทั้งหมด</v-toolbar-title>
           <v-spacer></v-spacer>
-
-          <v-btn color="primary" @click="openAddDialog">
-            เพิ่มหัวข้อการประเมิน
+          <v-btn color="primary" :to="'/ment'">
+          เพิ่มหัวข้อการประเมิน
           </v-btn>
         </v-toolbar>
       </template>
@@ -79,8 +78,9 @@ const topics = ref([]);
 
 const headers = [
   { title: "หัวข้อการประเมิน", key: "name" },
-  { title: "ระยะเวลาการประเมิน", Skey: "date" },
-  { title: "ทำงาน", key: "active" },
+  { title: "คำอธิบาย", key: "description" },
+  { title: "หัวข้อย่อย", key: "subtopic" },
+  { title: "คำอธิบาย", key: "subdescription" },
   { title: "จัดการ", key: "actions", align: "center" },
 ];
 

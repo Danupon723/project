@@ -9,7 +9,7 @@ import adminIndex from './view/admin/index.vue'
 import admindashbord from './view/admin/dashbord.vue'
 import adminuser from './view/admin/users.vue'
 import evaluation from './view/admin/evaluation.vue'
-import assessmentadmin from './view/admin/assessment.vue'
+import mentadmin from './view/admin/ment.vue'
 
 
 const routes = [
@@ -22,6 +22,11 @@ const routes = [
         path: '/register',
         name: 'register',
         component: register
+    },
+    {
+        path: '/ment',
+        name: 'assessment',
+        component: mentadmin
     },
 
     // Admin routes
@@ -46,9 +51,9 @@ const routes = [
                 component: adminuser
             },
             {
-                path: 'assessment',
-                name: 'assess',
-                component: assessmentadmin
+                path: 'ment',
+                name: 'ment',
+                component: mentadmin
             },
         ]
     },
