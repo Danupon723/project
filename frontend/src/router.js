@@ -13,6 +13,7 @@ import mentadmin from './view/admin/ment.vue'
 import admindirector from './view/admin/director.vue'
 import table from './view/admin/tabledirector.vue'
 import adduser from './view/admin/adduser.vue'
+import navbaradmin from './view/admin/navbar.vue'
 
 
 
@@ -28,6 +29,63 @@ const routes = [
     component: register
   },
 
+<<<<<<< HEAD
+    // Admin routes
+    {
+        path: '/admin',
+        component: adminIndex,
+        meta: { requiresAuth: true },
+        children: [
+            {
+                path: 'dashbord',
+                name: 'admindashbord',
+                component: admindashbord
+            },
+            {
+                path: 'evaluation',
+                name: 'evaluation',
+                component: evaluation
+            },
+            {
+                path: 'users',
+                name: 'adminuser',
+                component: adminuser
+            },
+            {
+                path: 'ment',
+                name: 'ment',
+                component: mentadmin
+            },
+            {
+                path:'adduser' , 
+                name:'adduser' , 
+                component: adduser
+            },
+             {
+                path: 'tabledirector',
+                name: 'tdirector',
+                component: table
+            },
+            {
+                path: 'director',
+                name: 'director',
+                component: admindirector
+            },
+            {
+            path: '/ment',
+            name: 'assessment',
+            component: mentadmin
+            },
+            {
+            path: '/navbar',
+            name: 'navbar',
+            component: navbaradmin
+            },
+        ]
+    },
+
+   
+=======
   // Admin routes
   {
     path: '/admin',
@@ -75,6 +133,7 @@ const routes = [
       },
     ]
   }
+>>>>>>> 17bb5106aa6e275e69e00defe603cdd60c96b41a
 ]
 
 
