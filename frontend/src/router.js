@@ -18,17 +18,18 @@ import navbaradmin from './view/admin/navbar.vue'
 
 
 const routes = [
-    {
-        path: '/',
-        name: 'login',
-        component: login
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: register
-    },
+  {
+    path: '/',
+    name: 'login',
+    component: login
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: register
+  },
 
+<<<<<<< HEAD
     // Admin routes
     {
         path: '/admin',
@@ -84,6 +85,55 @@ const routes = [
     },
 
    
+=======
+  // Admin routes
+  {
+    path: '/admin',
+    component: adminIndex,
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: '', // /admin → redirect ไป dashboard
+        redirect: '/admin/dashboard'
+      },
+      {
+        path: 'dashboard', // /admin/dashboard
+        name: 'admindashboard',
+        component: admindashbord
+      },
+      {
+        path: 'evaluation',
+        name: 'evaluation',
+        component: evaluation
+      },
+      {
+        path: 'users',
+        name: 'adminuser',
+        component: adminuser
+      },
+      {
+        path: 'ment',
+        name: 'ment',
+        component: mentadmin
+      },
+      {
+        path: 'adduser',
+        name: 'adduser',
+        component: adduser
+      },
+      {
+        path: 'tabledirector',
+        name: 'tdirector',
+        component: table
+      },
+      {
+        path: 'director',
+        name: 'director',
+        component: admindirector
+      },
+    ]
+  }
+>>>>>>> 17bb5106aa6e275e69e00defe603cdd60c96b41a
 ]
 
 const router = createRouter({

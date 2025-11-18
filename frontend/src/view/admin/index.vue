@@ -20,6 +20,7 @@
           </v-card>
         </v-col>
 
+<<<<<<< HEAD
         <v-col cols="12" sm="4">
           <v-card class="pa-4 rounded-xl" elevation="4">
             <v-icon size="40" color="red">mdi-alert-circle</v-icon>
@@ -54,6 +55,17 @@
       </v-card>
     </v-container>
   </Navbar>
+=======
+    <!-- เนื้อหาหลัก -->
+    <v-main>
+      <v-container>
+        <!-- ❌ เปลี่ยนจาก component switching เป็น router-view -->
+        <router-view />
+       
+      </v-container>
+    </v-main>
+  </v-app>
+>>>>>>> 17bb5106aa6e275e69e00defe603cdd60c96b41a
 </template>
 
 <script setup>
