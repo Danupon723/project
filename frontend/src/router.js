@@ -13,6 +13,7 @@ import mentadmin from './view/admin/ment.vue'
 import admindirector from './view/admin/director.vue'
 import table from './view/admin/tabledirector.vue'
 import adduser from './view/admin/adduser.vue'
+import navbaradmin from './view/admin/navbar.vue'
 
 
 
@@ -73,6 +74,11 @@ const routes = [
             path: '/ment',
             name: 'assessment',
             component: mentadmin
+            },
+            {
+            path: '/navbar',
+            name: 'navbar',
+            component: navbaradmin
             },
         ]
     },

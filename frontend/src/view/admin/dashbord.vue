@@ -1,4 +1,6 @@
+
 <template>
+ <Navbar />
   <v-container>
     <h2 class="text-h5 font-weight-bold mb-6"></h2>
 
@@ -57,7 +59,7 @@
 </template>
 
 <script setup>
-
+import Navbar from './navbar.vue';
 </script>
 
 <style scoped>
