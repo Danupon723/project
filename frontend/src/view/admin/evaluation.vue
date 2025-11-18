@@ -10,7 +10,7 @@
         <v-toolbar flat>
           <v-toolbar-title>หัวข้อการประเมินทั้งหมด</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn color="primary" :to="'/ment'">
+          <v-btn color="primary" :to="'/admin/ment'">
           เพิ่มหัวข้อการประเมิน
           </v-btn>
         </v-toolbar>

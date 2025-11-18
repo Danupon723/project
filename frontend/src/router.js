@@ -27,12 +27,6 @@ const routes = [
         name: 'register',
         component: register
     },
-    {
-        path: '/ment',
-        name: 'assessment',
-        component: mentadmin
-    },
-
 
     // Admin routes
     {
@@ -74,6 +68,11 @@ const routes = [
                 path: 'director',
                 name: 'director',
                 component: admindirector
+            },
+            {
+            path: '/ment',
+            name: 'assessment',
+            component: mentadmin
             },
         ]
     },

@@ -7,7 +7,7 @@
       <!-- ✅ ปุ่มเพิ่มข้อมูล + เมนู -->
       <v-menu>
         <template #activator="{ props }">
-          <router-link to="/director"><v-btn color="primary" v-bind="props">
+          <router-link to="/admin/director"><v-btn color="primary" v-bind="props">
             เพิ่มรายชื่อ
           </v-btn></router-link>
         </template>
