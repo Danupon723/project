@@ -2,23 +2,15 @@
   <v-container>
     <!-- 🧾 Toolbar -->
     <v-toolbar flat>
-      <v-toolbar-title>ข้อมูล</v-toolbar-title>
+      <v-toolbar-title>ข้อมูลผู้ใช้งาน</v-toolbar-title>
 
       <!-- ✅ ปุ่มเพิ่มข้อมูล + เมนู -->
-      <v-menu>
-
-        <!-- ✅ รายการเมนู -->
-        <v-list>
-              <v-list-item @click="เลือก('เพิ่มครู')">
-            <router-link to="/"><v-list-item-title>เพิ่มรายชื่อกรรมการผู้ประเมิน</v-list-item-title></router-link>
-          </v-list-item>
-          <v-list-item @click="เลือก('เพิ่มนักเรียน')">
-            <router-link to="/login"><v-list-item-title>เพิ่มรายชื่อผู้ถูกประเมิน</v-list-item-title></router-link>
-          </v-list-item>
-          <v-list-item @click="เลือก('เพิ่มรายวิชา')">
-          <router-link to="/login"><v-list-item-title>เพิ่ม</v-list-item-title></router-link>
-          </v-list-item>
-        </v-list>
+  <v-menu>
+        <template #activator="{ props }">
+          <router-link to="/admin/adduser"><v-btn color="primary" v-bind="props">
+            เพิ่มรายชื่อ
+          </v-btn></router-link>
+        </template>
       </v-menu>
     </v-toolbar>
 
@@ -115,6 +107,8 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const search = ref('')
 const page = ref(1)
@@ -159,5 +153,7 @@ function openEdit(item) {
   yere.value = item.yere
   dialog.value = true
 }
-
+function goAddUser() {
+  router.push('/admin/adduser')
+}
 </script>

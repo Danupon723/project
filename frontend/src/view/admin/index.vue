@@ -5,17 +5,15 @@
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>ระบบประเมินนบุคคล</v-toolbar-title>
 
-
-<v-btn
-  type="button"
-  color="#A60505"
-  size="large"
-  class="text-white"
-  @click="logout"
->
-  Logout
-</v-btn>
- 
+      <v-btn
+        type="button"
+        color="#A60505"
+        size="large"
+        class="text-white"
+        @click="logout"
+      >
+        Logout
+      </v-btn>
     </v-app-bar>
 
     <!-- แถบด้านข้าง -->
@@ -24,52 +22,52 @@
         <v-list-item
           v-for="(item, index) in items"
           :key="index"
-          :title="item.title"
-          @click="selectMenu(item)"
-        />
+        >
+          <router-link :to="item.path">{{ item.title }}</router-link>
+        </v-list-item>
       </v-list> 
     </v-navigation-drawer>
 
     <!-- เนื้อหาหลัก -->
     <v-main>
       <v-container>
-        <v-card class="pa-5" max-width="1300">
-          <v-card-text>
-            <!-- ✅ แสดง component ตามเมนู -->
-            <component :is="currentPage.component" />
-          </v-card-text>
-        </v-card>
+        <!-- ❌ เปลี่ยนจาก component switching เป็น router-view -->
+        <router-view />
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script setup>
-
-import {  ref, markRaw  , shallowRef } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import admindashbord from './dashbord.vue'
-import adminevaluation from './evaluation.vue'
-import adminuser from './users.vue'
-import assessmentadmin from './ment.vue'
-import tabledirector from './tabledirector.vue'
 
 const router = useRouter()
-
 const drawer = ref(true)
-const items = [
-  { title: 'แดชบอร์ด', icon: 'mdi-login', component: admindashbord },
-  { title: 'ผู้ใช้', icon: 'mdi-login', component: adminuser },
-  { title: 'การประเมิน', icon: 'mdi-login', component: adminevaluation },
-  { title: 'กรรมการผู้ประเมิน', icon: 'mdi-login', component: tabledirector },
-]
-const currentPage = shallowRef(items[0])
 
-function selectMenu(item) {
-  currentPage.value = item
-}
+// Menu items ของ router-link
+const items = [
+  { title: 'แดชบอร์ด', path: '/admin/dashbord' },
+  { title: 'ผู้ใช้', path: '/admin/users' },
+  { title: 'การประเมิน', path: '/admin/evaluation' },
+  { title: 'กรรมการผู้ประเมิน', path: '/admin/tabledirector' },
+]
+
 function logout(){
   localStorage.removeItem('token');
-   router.push('/') 
+  router.push('/') 
 }
 </script>
+<style>
+.active-menu {
+  background-color: #000000; /* สีดำสำหรับเมนูที่ active */
+  border-radius: 4px; /* เพิ่มมุมโค้งถ้าต้องการ */
+}
+
+.menu-link {
+  color: white;
+  text-decoration: none; /* ลบ underline ของ link */
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+}</style>

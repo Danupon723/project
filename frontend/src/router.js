@@ -12,6 +12,8 @@ import evaluation from './view/admin/evaluation.vue'
 import mentadmin from './view/admin/ment.vue'
 import admindirector from './view/admin/director.vue'
 import table from './view/admin/tabledirector.vue'
+import adduser from './view/admin/adduser.vue'
+
 
 
 const routes = [
@@ -67,6 +69,11 @@ const routes = [
                 name: 'ment',
                 component: mentadmin
             },
+            {
+                path:'adduser' , 
+                name:'adduser' , 
+                component: adduser
+            }
         ]
     },
 

@@ -2,7 +2,7 @@
   <v-container>
     <!-- 🧾 Toolbar -->
     <v-toolbar flat>
-      <v-toolbar-title>ข้อมูล</v-toolbar-title>
+      <v-toolbar-title>ข้อมูลกรรมการประเมิน</v-toolbar-title>
 
       <!-- ✅ ปุ่มเพิ่มข้อมูล + เมนู -->
       <v-menu>
