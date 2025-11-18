@@ -33,6 +33,7 @@
       <v-container>
         <!-- ❌ เปลี่ยนจาก component switching เป็น router-view -->
         <router-view />
+       
       </v-container>
     </v-main>
   </v-app>
