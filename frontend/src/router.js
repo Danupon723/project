@@ -32,16 +32,7 @@ const routes = [
         name: 'assessment',
         component: mentadmin
     },
-    {
-        path: '/tabledirector',
-        name: 'tdirector',
-        component: table
-    },
-    {
-        path: '/director',
-        name: 'director',
-        component: admindirector
-    },
+
 
     // Admin routes
     {
@@ -73,7 +64,17 @@ const routes = [
                 path:'adduser' , 
                 name:'adduser' , 
                 component: adduser
-            }
+            },
+             {
+                path: 'tabledirector',
+                name: 'tdirector',
+                component: table
+            },
+            {
+                path: 'director',
+                name: 'director',
+                component: admindirector
+            },
         ]
     },
 

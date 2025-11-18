@@ -58,16 +58,4 @@ function logout(){
   router.push('/') 
 }
 </script>
-<style>
-.active-menu {
-  background-color: #000000; /* สีดำสำหรับเมนูที่ active */
-  border-radius: 4px; /* เพิ่มมุมโค้งถ้าต้องการ */
-}
 
-.menu-link {
-  color: white;
-  text-decoration: none; /* ลบ underline ของ link */
-  display: block;
-  width: 100%;
-  padding: 10px 16px;
-}</style>
