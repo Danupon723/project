@@ -91,6 +91,7 @@ const loadData = async () => {
     const grpRes = await axios.get('http://localhost:7000/api/auth/groups')
     departments.value = depRes.data.dpmtitem
     groups.value = grpRes.data.groups
+
   } catch (err) {
     console.error("Error loading data:", err)
   }
