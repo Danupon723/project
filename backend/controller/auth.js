@@ -30,7 +30,7 @@ exports.register = async (req,res,next)=>{
         }   
         const password_hash = await bcrypt.hash(password , 10)
 
-        const memo = await conn('users').insert({name_th:name,email,password_hash,department_id:department ,org_groups_id : group_id , role 	})
+        const memo = await conn('users').insert({name_th:name,email,password_hash,department_id:department ,org_group_id : group_id , role 	})
         res.json({success:true , message : 'Register successfully'})
     }catch(e){
         next(e)
