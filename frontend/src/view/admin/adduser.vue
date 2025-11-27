@@ -52,7 +52,7 @@
 
 <script setup>
 import { reactive } from "vue";
-import axios from "axios";
+import axios from 'axios'
 
 // รายการเลือกของแต่ละ select
 const items1 = ['มี/ไม่มี', '1-4', 'URL'];
